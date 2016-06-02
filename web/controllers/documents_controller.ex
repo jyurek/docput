@@ -2,6 +2,6 @@ defmodule Docput.DocumentsController do
   use Docput.Web, :controller
 
   def index(conn, _params) do
-    conn |> render "index.html"
+    conn |> render("index.html")
   end
 end

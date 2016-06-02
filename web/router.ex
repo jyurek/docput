@@ -8,6 +8,10 @@ defmodule Docput.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
 
+    if Mix.env == :dev || Mix.env == :test do
+      plug Docput.Plugs.SetUserIdFromParams
+    end
+
     plug Docput.Plugs.FetchCurrentUser
   end
 
@@ -27,7 +31,12 @@ defmodule Docput.Router do
     pipe_through :browser
 
     get "/", AuthController, :index
-    get "/sign_out", AuthController, :sign_out
     get "/callback", AuthController, :callback
+  end
+
+  scope "/", Docput do
+    pipe_through :browser
+
+    get "/sign_out", AuthController, :sign_out
   end
 end

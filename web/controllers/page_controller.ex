@@ -5,7 +5,7 @@ defmodule Docput.PageController do
     if conn.assigns[:current_user] do
       conn |> redirect(to: documents_path(conn, :index))
     else
-      conn |> render "index.html"
+      conn |> render("index.html")
     end
   end
 end
