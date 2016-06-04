@@ -4,8 +4,8 @@ defmodule GoogleStrategy do
 
   def client(redirect_uri) do
     OAuth2.Client.new([
-      client_id: Application.get_env(:docput, :google_client_id),
-      client_secret: Application.get_env(:docput, :google_client_secret),
+      client_id: System.get_env("GOOGLE_CLIENT_ID"),
+      client_secret: System.get_env("GOOGLE_CLIENT_SECRET"),
       authorize_url: "https://accounts.google.com/o/oauth2/auth",
       token_url: "https://www.googleapis.com/oauth2/v3/token",
       site: "https://www.googleapis.com",

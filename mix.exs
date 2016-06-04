@@ -44,6 +44,7 @@ defmodule Docput.Mixfile do
       {:bamboo, "~> 0.4"},
       {:cowboy, "~> 1.0"},
       {:earmark, "~> 0.1.17"},
+      {:envy, "~> 0.0.2"},
       {:exgravatar, "~> 0.2"},
       {:gettext, "~> 0.9"},
       {:oauth2, "~> 0.5"},
