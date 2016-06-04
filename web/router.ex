@@ -30,7 +30,7 @@ defmodule Docput.Router do
   scope "/auth", Docput do
     pipe_through :browser
 
-    get "/", AuthController, :index
+    get "/google", AuthController, :google
     get "/callback", AuthController, :callback
   end
 

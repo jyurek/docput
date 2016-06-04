@@ -5,7 +5,7 @@ defmodule Docput.AuthController do
   alias Docput.User
   alias Docput.Queries
 
-  def index(conn, _params) do
+  def google(conn, _params) do
     conn
     |> redirect(external: strategy.authorize_url!(auth_url(conn, :callback)))
   end

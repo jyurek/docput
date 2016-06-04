@@ -1,1 +1,1 @@
-<a href="<%= auth_path(@conn, :index) %>">Login with Google</a>
+<a href="<%= auth_path(@conn, :google) %>">Login with Google</a>
