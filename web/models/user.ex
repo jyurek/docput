@@ -6,6 +6,9 @@ defmodule Docput.User do
     field :token
     field :name
 
+    has_many :documents, Docput.Document
+    has_many :template, Docput.Template
+
     timestamps
   end
 
