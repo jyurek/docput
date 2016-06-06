@@ -1,3 +1,5 @@
+var bourbonPath = require("bourbon").includePaths[0];
+
 exports.config = {
   // See http://brunch.io/#documentation for docs.
   files: {
@@ -52,6 +54,14 @@ exports.config = {
     babel: {
       // Do not use ES6 compiler in vendor code
       ignore: [/web\/static\/vendor/]
+    },
+    sass: {
+      options: {
+        includePaths: [
+          bourbonPath,
+          "./node_modules/bourbon-neat/app/assets/stylesheets",
+        ],
+      }
     }
   },
 
