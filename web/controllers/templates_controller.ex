@@ -20,9 +20,7 @@ defmodule Docput.TemplatesController do
       {:ok, _template} ->
         redirect(conn, to: documents_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", %{
-          changeset: changeset
-        })
+        render(conn, "new.html", changeset: changeset)
     end
   end
 
@@ -42,9 +40,12 @@ defmodule Docput.TemplatesController do
     changeset = Template.changeset(template, :update, template_params)
     case Repo.update(changeset) do
       {:ok, user} ->
-        redirect(conn, to: documents_path(conn, :index))
+        conn
+        |> redirect(to: documents_path(conn, :index))
       {:error, _changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> assign(:template, Repo.get!(Template, id))
+        |> render("edit.html", changeset: changeset)
     end
   end
 
