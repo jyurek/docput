@@ -4,13 +4,18 @@
 <%= link "New Template", to: templates_path(@conn, :new) %>
 <ul>
 <%= for template <- @current_user.templates do %>
-  <li><%= link template.name, to: templates_path(@conn, :edit, template.id) %></li>
+  <li>
+    <%= link template.name, to: templates_path(@conn, :edit, template.id) %>
+    <%= link "❌", to: templates_path(@conn, :delete, template.id), method: :delete %>
+  </li>
 <% end %>
 </ul>
 
 <%= link "New Document", to: documents_path(@conn, :new) %>
 <ul>
 <%= for document <- @current_user.documents do %>
-  <li><%= link document.name, to: documents_path(@conn, :edit, document.id) %></li>
+  <li>
+    <%= link document.name, to: documents_path(@conn, :edit, document.id) %>
+  </li>
 <% end %>
 </ul>

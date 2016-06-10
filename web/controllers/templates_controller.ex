@@ -1,11 +1,29 @@
 defmodule Docput.TemplatesController do
   use Docput.Web, :controller
   alias Docput.Template
+  alias Phoenix.Controller.Flash
+
+  require Logger
 
   def new(conn, _params) do
     conn
     |> assign(:changeset, Template.changeset(%Template{}, :create))
     |> render "new.html"
+  end
+
+  def create(conn, %{"template" => template_params}) do
+    template_params = template_params
+      |> Map.put("user_id", conn.assigns.current_user.id)
+
+    changeset = Template.changeset(%Template{}, :create, template_params)
+    case Repo.insert(changeset) do
+      {:ok, _template} ->
+        redirect(conn, to: documents_path(conn, :index))
+      {:error, changeset} ->
+        render(conn, "new.html", %{
+          changeset: changeset
+        })
+    end
   end
 
   def edit(conn, %{"id" => id}) do
@@ -26,24 +44,21 @@ defmodule Docput.TemplatesController do
       {:ok, user} ->
         redirect(conn, to: documents_path(conn, :index))
       {:error, _changeset} ->
-        render(conn, "new.html", %{
-          changeset: changeset
-        })
+        render(conn, "new.html", changeset: changeset)
     end
   end
 
-  def create(conn, %{"template" => template_params}) do
-    template_params = template_params
-      |> Map.put("user_id", conn.assigns.current_user.id)
-
-    changeset = Template.changeset(%Template{}, :create, template_params)
-    case Repo.insert(changeset) do
-      {:ok, _template} ->
-        redirect(conn, to: documents_path(conn, :index))
-      {:error, changeset} ->
-        render(conn, "new.html", %{
-          changeset: changeset
-        })
+  def delete(conn, %{"id" => id}) do
+    template = Repo.get_by!(Template, id: id, user_id: conn.assigns.current_user.id)
+    case Repo.delete(template) do
+      {:ok, template} ->
+        conn
+        |> put_flash(:notice, "Removed!")
+        |> redirect to: documents_path(conn, :index)
+      {:error, _changeset} ->
+        conn
+        |> put_flash(:error, "Unable to remove that template.")
+        |> redirect to: documents_path(conn, :index)
     end
   end
 end
