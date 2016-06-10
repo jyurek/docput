@@ -4,7 +4,7 @@
 <%= link "New Template", to: templates_path(@conn, :new) %>
 <ul>
 <%= for template <- @current_user.templates do %>
-  <li><%= template.name %></li>
+  <li><%= link template.name, to: templates_path(@conn, :edit, template.id) %></li>
 <% end %>
 </ul>
 

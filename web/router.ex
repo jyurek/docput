@@ -31,8 +31,9 @@ defmodule Docput.Router do
     put "/documents/:id", DocumentsController, :update
 
     get "/templates/new", TemplatesController, :new
-    get "/templates/:id", DocumentsController, :edit
+    get "/templates/:id", TemplatesController, :edit
     post "/templates", TemplatesController, :create
+    put "/templates/:id", TemplatesController, :update
   end
 
   scope "/auth", Docput do

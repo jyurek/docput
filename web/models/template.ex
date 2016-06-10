@@ -17,4 +17,9 @@ defmodule Docput.Template do
     |> cast(params, ~w(name body user_id), [])
     |> assoc_constraint(:user)
   end
+  def changeset(template, :update, params) do
+    template
+    |> cast(params, ~w(name body user_id), [])
+    |> assoc_constraint(:user)
+  end
 end
