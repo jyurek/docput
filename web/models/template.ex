@@ -15,6 +15,8 @@ defmodule Docput.Template do
   def changeset(template, :create, params) do
     template
     |> cast(params, ~w(name body user_id), [])
+    |> validate_length(:name, min: 1)
+    |> validate_length(:body, min: 1)
     |> assoc_constraint(:user)
   end
   def changeset(template, :update, params) do

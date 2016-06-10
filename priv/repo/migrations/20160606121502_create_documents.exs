@@ -10,7 +10,8 @@ defmodule Docput.Repo.Migrations.CreateDocuments do
 
       timestamps
     end
+
     create index(:documents, [:name], unique: true)
-    create index(:documents, [:user_id], unique: true)
+    create index(:documents, [:user_id])
   end
 end

@@ -16,6 +16,7 @@
 <%= for document <- @current_user.documents do %>
   <li>
     <%= link document.name, to: documents_path(@conn, :edit, document.id) %>
+    <%= link "❌", to: documents_path(@conn, :delete, document.id), method: :delete %>
   </li>
 <% end %>
 </ul>
