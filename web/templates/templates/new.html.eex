@@ -1,0 +1,21 @@
+<%= form_for @changeset, templates_path(@conn, :create), [], fn(f) -> %>
+  <%= if message = f.errors[:name] do %>
+    <span>name <%= translate_error(message) %></span>
+  <% end %>
+  <%= if message = f.errors[:body] do %>
+    <span>body <%= translate_error(message) %></span>
+  <% end %>
+  <%= if message = f.errors[:template_id] do %>
+    <span>template_id <%= translate_error(message) %></span>
+  <% end %>
+  <%= if message = f.errors[:user_id] do %>
+    <span>user_id <%= translate_error(message) %></span>
+  <% end %>
+
+  <%= text_input f, :name, placeholder: "Template Title" %>
+  <%= textarea f, :body, placeholder: "Template" %>
+
+  <button data-role="submit-announcement">
+    <%= gettext("Create Template") %>
+  </button>
+<% end %>

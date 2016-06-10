@@ -10,4 +10,10 @@ defmodule Docput.Document do
 
     timestamps
   end
+
+  def changeset(document, context, params \\ %{})
+  def changeset(document, :create, params) do
+    document
+    |> cast(params, ~w(name body user_id), ~w(template_id))
+  end
 end

@@ -1,2 +1,16 @@
 <h1>Documents!</h1>
 <p><%= @current_user.email %></p>
+
+<%= link "New Template", to: templates_path(@conn, :new) %>
+<ul>
+<%= for template <- @current_user.templates do %>
+  <li><%= template.name %></li>
+<% end %>
+</ul>
+
+<%= link "New Document", to: documents_path(@conn, :new) %>
+<ul>
+<%= for document <- @current_user.documents do %>
+  <li><%= document.name %></li>
+<% end %>
+</ul>

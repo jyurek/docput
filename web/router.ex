@@ -25,6 +25,11 @@ defmodule Docput.Router do
     pipe_through [:browser, Docput.Plugs.RequireLogin]
 
     get "/documents", DocumentsController, :index
+    get "/documents/new", DocumentsController, :new
+    post "/documents", DocumentsController, :create
+
+    get "/templates/new", TemplatesController, :new
+    post "/templates", TemplatesController, :create
   end
 
   scope "/auth", Docput do

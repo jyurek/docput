@@ -10,6 +10,6 @@ defmodule Docput.Repo.Migrations.AddTemplatesTable do
       timestamps
     end
 
-    create index(:templates, [:user_id], unique: true)
+    create index(:templates, [:user_id])
   end
 end
