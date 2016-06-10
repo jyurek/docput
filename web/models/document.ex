@@ -14,6 +14,10 @@ defmodule Docput.Document do
   def changeset(document, context, params \\ %{})
   def changeset(document, :create, params) do
     document
-    |> cast(params, ~w(name body user_id), ~w(template_id))
+    |> cast(params, ~w(name body user_id template_id), [])
+  end
+  def changeset(document, :update, params) do
+    document
+    |> cast(params, ~w(name body template_id), [])
   end
 end

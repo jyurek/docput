@@ -26,9 +26,12 @@ defmodule Docput.Router do
 
     get "/documents", DocumentsController, :index
     get "/documents/new", DocumentsController, :new
+    get "/documents/:id", DocumentsController, :edit
     post "/documents", DocumentsController, :create
+    put "/documents/:id", DocumentsController, :update
 
     get "/templates/new", TemplatesController, :new
+    get "/templates/:id", DocumentsController, :edit
     post "/templates", TemplatesController, :create
   end
 

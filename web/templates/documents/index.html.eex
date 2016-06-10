@@ -11,6 +11,6 @@
 <%= link "New Document", to: documents_path(@conn, :new) %>
 <ul>
 <%= for document <- @current_user.documents do %>
-  <li><%= document.name %></li>
+  <li><%= link document.name, to: documents_path(@conn, :edit, document.id) %></li>
 <% end %>
 </ul>
