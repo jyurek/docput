@@ -22,7 +22,7 @@ defmodule Docput.AuthController do
       user ->
         conn
         |> put_session(:user_id, user.id)
-        |> redirect(external: documents_path(conn, :index))
+        |> redirect(external: home_path(conn, :index))
     end
   end
   def callback(conn, %{"error" => error_message}) do

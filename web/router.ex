@@ -18,13 +18,12 @@ defmodule Docput.Router do
   scope "/", Docput do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", HomeController, :index
   end
 
   scope "/", Docput do
     pipe_through [:browser, Docput.Plugs.RequireLogin]
 
-    get "/documents", DocumentsController, :index
     get "/documents/new", DocumentsController, :new
     get "/documents/:id", DocumentsController, :edit
     post "/documents", DocumentsController, :create
@@ -48,6 +47,6 @@ defmodule Docput.Router do
   scope "/", Docput do
     pipe_through :browser
 
-    get "/sign_out", AuthController, :sign_out
+    delete "/sign_out", AuthController, :sign_out
   end
 end

@@ -3,12 +3,6 @@ defmodule Docput.DocumentsController do
 
   alias Docput.Document
 
-  def index(conn, _params) do
-    conn
-    |> assign(:current_user, preload_associations(conn.assigns.current_user))
-    |> render("index.html")
-  end
-
   def new(conn, _params) do
     conn
     |> assign(:changeset, Document.changeset(%Document{}, :create))
