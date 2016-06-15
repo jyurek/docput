@@ -3,6 +3,13 @@ defmodule Docput.DocumentsController do
 
   alias Docput.Document
 
+  def show(conn, %{"id" => id, "revision" => revision}) do
+    document = Repo.get_by!(Document, %{
+      "id" => id,
+      # "revision" => revision
+    })
+  end
+
   def new(conn, _params) do
     conn
     |> assign(:changeset, Document.changeset(%Document{}, :create))

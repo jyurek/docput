@@ -20,9 +20,12 @@
         <%= render @view_module, @view_template, assigns %>
       </main>
 
-      <%= if signed_in?(@conn) do %>
-        <%= link "Sign Out", to: auth_path(@conn, :sign_out), method: :delete %>
-      <% end %>
+      <footer>
+        <%= if signed_in?(@conn) do %>
+          <span class="current_user"><%= @current_user.email %></span>
+          <%= link "Sign Out", to: auth_path(@conn, :sign_out), method: :delete %>
+        <% end %>
+      </footer>
 
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
