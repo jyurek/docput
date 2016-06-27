@@ -3,9 +3,8 @@ defmodule Docput.Document do
 
   schema "documents" do
     field :name
-    field :body
+    field :slug
 
-    belongs_to :template, Docput.Template
     belongs_to :user, Docput.User
 
     timestamps
@@ -14,14 +13,14 @@ defmodule Docput.Document do
   def changeset(document, context, params \\ %{})
   def changeset(document, :create, params) do
     document
-    |> cast(params, ~w(name body user_id template_id), [])
+    |> cast(params, ~w(name slug user_id _id), [])
     |> assoc_constraint(:user)
-    |> assoc_constraint(:template)
+    |> assoc_constraint(:layout)
   end
   def changeset(document, :update, params) do
     document
-    |> cast(params, ~w(name body template_id), [])
+    |> cast(params, ~w(name slug layout_id), [])
     |> assoc_constraint(:user)
-    |> assoc_constraint(:template)
+    |> assoc_constraint(:layout)
   end
 end

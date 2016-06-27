@@ -1,0 +1,31 @@
+<%= form_for @changeset, @url, [], fn(f) -> %>
+<div class="model">
+  <%= if message = f.errors[:layout_id] do %>
+    <span class="error">layout_id <%= translate_error(message) %></span>
+  <% end %>
+  <%= if message = f.errors[:user_id] do %>
+    <span class="error">user_id <%= translate_error(message) %></span>
+  <% end %>
+</div>
+
+<div class="string name">
+  <%= if message = f.errors[:name] do %>
+    <span class="error">name <%= translate_error(message) %></span>
+  <% end %>
+  <%= text_input f, :name, placeholder: "Layout Title" %>
+</div>
+
+<div class="text body">
+  <%= if message = f.errors[:body] do %>
+    <span class="error">body <%= translate_error(message) %></span>
+  <% end %>
+  <%= textarea f, :body, placeholder: "Layout" %>
+</div>
+
+<div class="submit">
+  <button data-role="submit-announcement">
+    <%= gettext("Create Layout") %>
+  </button>
+</div>
+<% end %>
+

@@ -30,11 +30,11 @@ defmodule Docput.Router do
     put "/documents/:id", DocumentsController, :update
     delete "/documents/:id", DocumentsController, :delete
 
-    get "/templates/new", TemplatesController, :new
-    get "/templates/:id", TemplatesController, :edit
-    post "/templates", TemplatesController, :create
-    put "/templates/:id", TemplatesController, :update
-    delete "/templates/:id", TemplatesController, :delete
+    get "/layouts/new", LayoutsController, :new
+    get "/layouts/:id", LayoutsController, :edit
+    post "/layouts", LayoutsController, :create
+    put "/layouts/:id", LayoutsController, :update
+    delete "/layouts/:id", LayoutsController, :delete
   end
 
   scope "/auth", Docput do

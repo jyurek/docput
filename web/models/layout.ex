@@ -1,7 +1,7 @@
-defmodule Docput.Template do
+defmodule Docput.Layout do
   use Docput.Web, :model
 
-  schema "templates" do
+  schema "layouts" do
     field :name
     field :body
 
@@ -11,16 +11,16 @@ defmodule Docput.Template do
     timestamps
   end
 
-  def changeset(template, context, params \\ :empty)
-  def changeset(template, :create, params) do
-    template
+  def changeset(layout, context, params \\ :empty)
+  def changeset(layout, :create, params) do
+    layout
     |> cast(params, ~w(name body user_id), [])
     |> validate_length(:name, min: 1)
     |> validate_length(:body, min: 1)
     |> assoc_constraint(:user)
   end
-  def changeset(template, :update, params) do
-    template
+  def changeset(layout, :update, params) do
+    layout
     |> cast(params, ~w(name body user_id), [])
     |> validate_length(:name, min: 1)
     |> validate_length(:body, min: 1)

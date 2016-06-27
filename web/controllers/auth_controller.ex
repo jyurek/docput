@@ -12,17 +12,22 @@ defmodule Docput.AuthController do
 
   def callback(conn, %{"code" => code}) do
     token = strategy.get_token!(auth_url(conn, :callback), code: code)
-    %{"email" => email, "name" => name} = get_userinfo(token)
-
-    case find_or_insert_user(email, name) do
-      nil -> 
+    case get_userinfo(token) do
+      %{"email" => email, "name" => name} ->
+        case find_or_insert_user(email, name) do
+          nil -> 
+          conn
+          |> put_flash(:error, gettext("Can't work with this."))
+          |> redirect(external: "/")
+          user ->
+            conn
+            |> put_session(:user_id, user.id)
+            |> redirect(external: home_path(conn, :index))
+        end
+      %{"error" => error} ->
         conn
-        |> put_flash(:error, gettext("Can't work with this."))
-        |> redirect(external: "/")
-      user ->
-        conn
-        |> put_session(:user_id, user.id)
-        |> redirect(external: home_path(conn, :index))
+        |> put_flash(:error, gettext("There was a problem logging you in."))
+        |> redirect(to: home_path(conn, :index))
     end
   end
   def callback(conn, %{"error" => error_message}) do

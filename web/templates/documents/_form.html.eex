@@ -5,8 +5,8 @@
   <%= if message = f.errors[:body] do %>
     <span>body <%= translate_error(message) %></span>
   <% end %>
-  <%= if message = f.errors[:template_id] do %>
-    <span>template_id <%= translate_error(message) %></span>
+  <%= if message = f.errors[:layout_id] do %>
+    <span>layout_id <%= translate_error(message) %></span>
   <% end %>
   <%= if message = f.errors[:user_id] do %>
     <span>user_id <%= translate_error(message) %></span>
@@ -14,7 +14,7 @@
 
   <%= text_input f, :name, placeholder: "Document Title" %>
   <%= textarea f, :body, placeholder: "Document" %>
-  <%= select(f, :template_id, @current_user.templates |> selectify) %>
+  <%= select(f, :layout_id, @current_user.layouts |> selectify) %>
 
   <button data-role="submit-announcement">
     <%= gettext("Create Document") %>

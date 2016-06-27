@@ -73,6 +73,6 @@ defmodule Docput.DocumentsController do
   end
 
   defp preload_associations(user) do
-    Repo.preload(user, [:documents, :templates])
+    Repo.preload(user, [:documents, :layouts])
   end
 end

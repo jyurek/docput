@@ -1,0 +1,1 @@
+<%= render "_form.html", url: layouts_path(@conn, :update, @layout.id), changeset: @changeset, current_user: @current_user %>

@@ -1,1 +1,0 @@
-<%= render "_form.html", url: templates_path(@conn, :update, @template.id), changeset: @changeset, current_user: @current_user %>

@@ -1,22 +1,25 @@
-<h1>Documents!</h1>
-
-<%= link "New Template", to: templates_path(@conn, :new) %>
-<ul>
-<%= for template <- @current_user.templates do %>
-  <li>
-    <%= link template.name, to: templates_path(@conn, :edit, template.id) %>
-    <%= link to: templates_path(@conn, :delete, template.id), method: :delete do %>
-      <img src="/images/trash.svg" height="16" width="16"/>
+<div class="layouts">
+  <h2>Document Layouts</h2>
+  <%= link "New Layout", to: layouts_path(@conn, :new) %>
+  <ul>
+    <%= for layout <- @current_user.layouts do %>
+      <li>
+        <%= link layout.name, to: layouts_path(@conn, :edit, layout.id) %>
+        <%= link to: layouts_path(@conn, :delete, layout.id), method: :delete do %>
+          <img src="/images/trash.svg" height="16" width="16"/>
+        <% end %>
+      </li>
     <% end %>
-  </li>
-<% end %>
-</ul>
+  </ul>
+</div>
 
-<%= link "New Document", to: documents_path(@conn, :new) %>
-<ul>
-<%= for document <- @current_user.documents do %>
-  <li>
-    <%= link document.name, to: documents_path(@conn, :edit, document.id) %>
-  </li>
-<% end %>
-</ul>
+<div class="documents">
+  <h2>Document Revisions</h2>
+  <ul>
+    <%= for document <- @current_user.documents do %>
+      <li>
+        <%= link document.name, to: documents_path(@conn, :edit, document.id) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
