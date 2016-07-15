@@ -12,12 +12,7 @@ defmodule Docput.User do
     timestamps
   end
 
-  def changeset(user, params \\ {}) do
-    user
-    |> validate_length(:name, min: 3)
-  end
-
-  def create_changeset(user \\ %__MODULE__{}, params) do
+  def create_changeset(user, params) do
     user
     |> cast(params, ~w(email), ~w(name))
     |> generate_token

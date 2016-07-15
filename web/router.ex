@@ -25,10 +25,13 @@ defmodule Docput.Router do
     pipe_through [:browser, Docput.Plugs.RequireLogin]
 
     get "/documents/new", DocumentsController, :new
-    get "/documents/:id", DocumentsController, :edit
     post "/documents", DocumentsController, :create
-    put "/documents/:id", DocumentsController, :update
     delete "/documents/:id", DocumentsController, :delete
+
+    get "/revisions/:slug/:version", RevisionsController, :show
+    get "/revisions/new", RevisionsController, :new
+    post "/revisions", RevisionsController, :create
+    delete "/revisions/:id", RevisionsController, :delete
 
     get "/layouts/new", LayoutsController, :new
     get "/layouts/:id", LayoutsController, :edit

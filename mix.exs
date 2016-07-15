@@ -29,7 +29,10 @@ defmodule Docput.Mixfile do
     :phoenix,
     :phoenix_ecto,
     :phoenix_html,
-    :postgrex
+    :postgrex,
+    :timex,
+    :timex_ecto,
+    :yaml_elixir
   ]
 
   # Specifies which paths to compile per environment.
@@ -47,13 +50,19 @@ defmodule Docput.Mixfile do
       {:envy, "~> 0.0.2"},
       {:exgravatar, "~> 0.2"},
       {:gettext, "~> 0.9"},
+      {:mustache, github: "jyurek/Mustache.ex", branch: "also-strings"},
       {:oauth2, "~> 0.5"},
       {:phoenix, "~> 1.1.4"},
-      {:phoenix_ecto, "~> 2.0"},
+      {:phoenix_ecto, "~> 3.0.0"},
       {:phoenix_html, "~> 2.4"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:postgrex, ">= 0.0.0"},
-      {:secure_random, "~> 0.1"}
+      {:quick_alias, "~> 0.1.0"},
+      {:secure_random, "~> 0.1"},
+      {:timex, "~>2.2.1"},
+      {:timex_ecto, "~>1.1.3"},
+      {:yamerl, github: "yakaz/yamerl"},
+      {:yaml_elixir, "~> 1.2"}
     ]
   end
 
@@ -65,6 +74,7 @@ defmodule Docput.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"]]
+     "ecto.reset": ["ecto.drop", "ecto.setup"],
+     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
   end
 end

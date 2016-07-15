@@ -24,7 +24,7 @@ defmodule Docput.AuthController do
             |> put_session(:user_id, user.id)
             |> redirect(external: home_path(conn, :index))
         end
-      %{"error" => error} ->
+      %{"error" => _error} ->
         conn
         |> put_flash(:error, gettext("There was a problem logging you in."))
         |> redirect(to: home_path(conn, :index))
@@ -51,10 +51,6 @@ defmodule Docput.AuthController do
     |> Map.get(:body)
   end
 
-  defp get_tokeninfo!(id_token) do
-    strategy.get_tokeninfo!(id_token)
-  end
-
   defp find_or_insert_user(email, name) do
     find_user(email) || insert_user(email, name)
   end
@@ -72,9 +68,5 @@ defmodule Docput.AuthController do
       {:error, _changeset} ->
         nil
     end
-  end
-
-  defp redirect_after_success_uri(conn, token) do
-    "#{get_session(conn, :redirect_after_success_uri)}/#{token}"
   end
 end

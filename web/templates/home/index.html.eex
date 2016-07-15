@@ -15,10 +15,23 @@
 
 <div class="documents">
   <h2>Document Revisions</h2>
+  <%= link "Create Document", to: documents_path(@conn, :new) %>
   <ul>
     <%= for document <- @current_user.documents do %>
       <li>
-        <%= link document.name, to: documents_path(@conn, :edit, document.id) %>
+        <%= document.name %>
+        <%= link to: documents_path(@conn, :delete, document.id), method: :delete do %>
+          <img src="/images/trash.svg" height="16" width="16"/>
+          <ol>
+            <%= for revision <- document.revisions do %>
+              <li>
+                <%= link time_of(revision), to: revisions_path(@conn, :show, document.slug, revision.version) %>
+                <%= link to: revisions_path(@conn, :delete, revision.id), method: :delete do %>
+                  <img src="/images/trash.svg" height="16" width="16"/>
+                <% end %>
+            <% end %>
+          </ol>
+        <% end %>
       </li>
     <% end %>
   </ul>

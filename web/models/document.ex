@@ -6,21 +6,14 @@ defmodule Docput.Document do
     field :slug
 
     belongs_to :user, Docput.User
+    has_many :revisions, Docput.Revision, on_delete: :delete_all
 
     timestamps
   end
 
-  def changeset(document, context, params \\ %{})
-  def changeset(document, :create, params) do
+  def changeset(document, params \\ %{})
+  def changeset(document, params) do
     document
-    |> cast(params, ~w(name slug user_id _id), [])
-    |> assoc_constraint(:user)
-    |> assoc_constraint(:layout)
-  end
-  def changeset(document, :update, params) do
-    document
-    |> cast(params, ~w(name slug layout_id), [])
-    |> assoc_constraint(:user)
-    |> assoc_constraint(:layout)
+    |> cast(params, ~w(slug user_id), ~w(name))
   end
 end

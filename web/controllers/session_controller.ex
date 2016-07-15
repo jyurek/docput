@@ -2,6 +2,6 @@ defmodule SessionController do
   use Docput.Web, :controller
 
   def new(conn, _params) do
-    render "new.html"
+    render conn, "new.html"
   end
 end

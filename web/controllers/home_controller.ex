@@ -12,6 +12,6 @@ defmodule Docput.HomeController do
   end
 
   defp preload_associations(user) do
-    Repo.preload(user, [:documents, :layouts])
+    Repo.preload(user, [[documents: :revisions], :layouts])
   end
 end

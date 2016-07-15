@@ -11,15 +11,7 @@ defmodule Docput.Layout do
     timestamps
   end
 
-  def changeset(layout, context, params \\ :empty)
-  def changeset(layout, :create, params) do
-    layout
-    |> cast(params, ~w(name body user_id), [])
-    |> validate_length(:name, min: 1)
-    |> validate_length(:body, min: 1)
-    |> assoc_constraint(:user)
-  end
-  def changeset(layout, :update, params) do
+  def changeset(layout, params \\ %{}) do
     layout
     |> cast(params, ~w(name body user_id), [])
     |> validate_length(:name, min: 1)

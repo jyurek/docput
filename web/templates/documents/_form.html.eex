@@ -1,23 +1,28 @@
 <%= form_for @changeset, @url, [], fn(f) -> %>
-  <%= if message = f.errors[:name] do %>
-    <span>name <%= translate_error(message) %></span>
-  <% end %>
-  <%= if message = f.errors[:body] do %>
-    <span>body <%= translate_error(message) %></span>
-  <% end %>
-  <%= if message = f.errors[:layout_id] do %>
-    <span>layout_id <%= translate_error(message) %></span>
-  <% end %>
-  <%= if message = f.errors[:user_id] do %>
-    <span>user_id <%= translate_error(message) %></span>
-  <% end %>
+  <div class="input">
+    <%= text_input f, :name, placeholder: "Document Name" %>
+    <%= error_tag f, :name %>
+  </div>
 
-  <%= text_input f, :name, placeholder: "Document Title" %>
-  <%= textarea f, :body, placeholder: "Document" %>
-  <%= select(f, :layout_id, @current_user.layouts |> selectify) %>
+  <div class="input">
+    <%= text_input f, :slug, placeholder: "Document Slug" %>
+    <%= error_tag f, :slug %>
+  </div>
 
-  <button data-role="submit-announcement">
-    <%= gettext("Create Document") %>
-  </button>
+  <div class="input">
+    <%= textarea f, :body, placeholder: "Document Body" %>
+    <%= error_tag f, :body %>
+  </div>
+
+  <div class="input">
+    <%= select(f, :layout_id, @current_user.layouts |> selectify) %>
+    <%= error_tag f, :layout_id %>
+  </div>
+
+  <div class="submit">
+    <button data-role="submit-document">
+      <%= gettext("Create Document") %>
+    </button>
+  <div>
 <% end %>
 
