@@ -50,7 +50,7 @@ defmodule Docput.Mixfile do
       {:envy, "~> 0.0.2"},
       {:exgravatar, "~> 0.2"},
       {:gettext, "~> 0.9"},
-      {:mustache, github: "jyurek/Mustache.ex", branch: "also-strings"},
+      {:mustache, "~> 0.2.0"},
       {:oauth2, "~> 0.5"},
       {:phoenix, "~> 1.1.4"},
       {:phoenix_ecto, "~> 3.0.0"},
