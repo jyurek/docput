@@ -31,7 +31,15 @@ defmodule Docput.Renderer do
   end
 
   defp split_content(content) do
-    content |> String.split(~r/--\s*/)
+    content |> ensure_correct_format |> String.split(~r/--\s*/)
+  end
+
+  defp ensure_correct_format(content) do
+    case String.split(content, ~r/--\s*/) |> length do
+      1 -> "--\n--\n" <> content
+      2 -> "--\n" <> content
+      _ -> content
+    end
   end
 
   def render_markdown(markdown) do
