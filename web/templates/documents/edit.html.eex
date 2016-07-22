@@ -1,1 +1,0 @@
-<%= render "_form.html", url: documents_path(@conn, :update, @document.id), changeset: @changeset, current_user: @current_user %>

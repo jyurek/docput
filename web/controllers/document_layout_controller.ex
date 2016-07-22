@@ -1,4 +1,4 @@
-defmodule Docput.LayoutsController do
+defmodule Docput.DocumentLayoutController do
   use Docput.Web, :controller
   alias Docput.Layout
 

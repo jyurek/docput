@@ -24,20 +24,20 @@ defmodule Docput.Router do
   scope "/", Docput do
     pipe_through [:browser, Docput.Plugs.RequireLogin]
 
-    get "/documents/new", DocumentsController, :new
-    post "/documents", DocumentsController, :create
-    delete "/documents/:id", DocumentsController, :delete
+    get "/documents/new", DocumentController, :new
+    post "/documents", DocumentController, :create
+    delete "/documents/:id", DocumentController, :delete
 
-    get "/revisions/:slug/:version", RevisionsController, :show
-    get "/revisions/new", RevisionsController, :new
-    post "/revisions", RevisionsController, :create
-    delete "/revisions/:id", RevisionsController, :delete
+    get "/revisions/:slug/:version", RevisionController, :show
+    get "/revisions/new", RevisionController, :new
+    post "/revisions", RevisionController, :create
+    delete "/revisions/:id", RevisionController, :delete
 
-    get "/layouts/new", LayoutsController, :new
-    get "/layouts/:id", LayoutsController, :edit
-    post "/layouts", LayoutsController, :create
-    put "/layouts/:id", LayoutsController, :update
-    delete "/layouts/:id", LayoutsController, :delete
+    get "/layouts/new", DocumentLayoutController, :new
+    get "/layouts/:id", DocumentLayoutController, :edit
+    post "/layouts", DocumentLayoutController, :create
+    put "/layouts/:id", DocumentLayoutController, :update
+    delete "/layouts/:id", DocumentLayoutController, :delete
   end
 
   scope "/auth", Docput do

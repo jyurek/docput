@@ -1,4 +1,4 @@
-defmodule Docput.DocumentsView do
+defmodule Docput.DocumentView do
   use Docput.Web, :view
 
   def selectify(enum) do

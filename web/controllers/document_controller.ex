@@ -1,9 +1,7 @@
-defmodule Docput.DocumentsController do
+defmodule Docput.DocumentController do
   use Docput.Web, :controller
 
-  alias Docput.Document
-  alias Docput.Revision
-  alias Docput.DocPutter
+  alias Docput.{Document, DocPutter}
 
   def new(conn, _params) do
     conn
@@ -24,7 +22,7 @@ defmodule Docput.DocumentsController do
   def delete(conn, %{"id" => id}) do
     document = Repo.get_by!(Document, id: id, user_id: conn.assigns.current_user.id)
     case Repo.delete(document) do
-      {:ok, document} ->
+      {:ok, _document} ->
         conn
         |> put_flash(:notice, "Removed!")
         |> redirect(to: home_path(conn, :index))

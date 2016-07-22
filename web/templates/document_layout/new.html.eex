@@ -1,4 +1,4 @@
-<%= form_for @changeset, layouts_path(@conn, :create), [], fn(form) -> %>
+<%= form_for @changeset, document_layout_path(@conn, :create), [], fn(form) -> %>
   <%= render "_form.html", form: form %>
   <div class="submit">
     <button><%= gettext("Create Layout") %></button>
