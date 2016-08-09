@@ -38,6 +38,9 @@ defmodule Docput.Router do
     post "/layouts", DocumentLayoutController, :create
     put "/layouts/:id", DocumentLayoutController, :update
     delete "/layouts/:id", DocumentLayoutController, :delete
+
+    get "/assets/new", AssetController, :new
+    get "/assets/created", AssetController, :created
   end
 
   scope "/auth", Docput do
