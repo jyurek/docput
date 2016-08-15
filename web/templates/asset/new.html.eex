@@ -1,0 +1,12 @@
+<%= if @conn.assigns[:message] do %>
+  <div><%= @message %></div>
+<% end %>
+<%= form_for @asset, asset_path(@conn, :create), [multipart: true], fn f -> %>
+  <div class="file">
+    <%= file_input f, "file" %>
+  </div>
+
+  <div class="submit">
+    <%= submit "Upload" %>
+  </div>
+<% end %>

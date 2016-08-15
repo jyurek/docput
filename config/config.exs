@@ -29,3 +29,9 @@ config :phoenix, :generators,
   binary_id: false
 
 config :docput, ecto_repos: [ Docput.Repo ]
+
+config :ex_aws,
+  access_key_id: [{:system, "AWS_ACCESS_KEY"}, :instance_role],
+  secret_access_key: [{:system, "AWS_SECRET_KEY"}, :instance_role],
+  debug_requests: true
+

@@ -13,6 +13,15 @@
   </ul>
 </div>
 
+<div class="assets">
+  <h2>Assets</h2>
+  <ul>
+    <%= for asset <- @current_user.assets do %>
+      <%= link asset.url, to: asset.url %>
+    <% end %>
+  </ul>
+</div>
+
 <div class="documents">
   <h2>Document Revisions</h2>
   <%= link "Create Document", to: document_path(@conn, :new) %>

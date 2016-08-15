@@ -24,6 +24,7 @@ defmodule Docput.Mixfile do
   defp app_list, do: [
     :bamboo,
     :cowboy,
+    :ex_aws,
     :gettext,
     :logger,
     :phoenix,
@@ -48,6 +49,7 @@ defmodule Docput.Mixfile do
       {:cowboy, "~> 1.0"},
       {:earmark, "~> 0.1.17"},
       {:envy, "~> 0.0.2"},
+      {:ex_aws, "~> 1.0.0-beta1"},
       {:exgravatar, "~> 0.2"},
       {:gettext, "~> 0.9"},
       {:mustache, "~> 0.2.0"},

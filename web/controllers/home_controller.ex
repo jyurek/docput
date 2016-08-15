@@ -17,6 +17,7 @@ defmodule Docput.HomeController do
       user,
       [
         :layouts,
+        :assets,
         documents:
           [revisions: from(r in Revision, order_by: r.inserted_at)]
       ]

@@ -39,4 +39,7 @@ config :docput, Docput.Repo,
   hostname: "localhost",
   pool_size: 10
 
+config :docput, :s3,
+  bucket: System.get_env("S3_BUCKET")
+
 import_config "dev.secret.exs"

@@ -8,6 +8,7 @@ defmodule Docput.User do
 
     has_many :documents, Docput.Document
     has_many :layouts, Docput.Layout
+    has_many :assets, Docput.Asset
 
     timestamps
   end
